@@ -5,30 +5,33 @@
    import {fade, slide, scale} from "svelte/transition";
 
     let search = '';
-    let movie;
+    let result;
+    let movies = [];
      
     const handleSubmit =  async ()  => {
         var apiUrl = `http://www.omdbapi.com/?t=${search}&apikey=311042d1`;
         var res = await fetch(apiUrl)
         .then(response => response.json())
         .then(data => {
-              movie = data; 
+              result = data; 
+              movies = [...movies, data]
         })
     };
 </script>
 
+<!-- Search -->
 <form on:submit|preventDefault={handleSubmit}>
 <input type="text"  placeholder="søk" bind:value={search}> 
     <button>Søk</button>
 </form>
 
-
-{#if movie != null}
+<!-- display search results -->
+{#each movies as movie  }
 <div class ="movie-results">
         <MovieDetails {movie}/>
     </div>
-    {/if}
-
+    {/each}
+   
 <style>
     .movie-results {
         display: grid;
