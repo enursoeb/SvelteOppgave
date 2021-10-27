@@ -5,11 +5,10 @@ import Button from "../Shared/Button.svelte";
 
 export let movie;
 
+console.log("I MovieDetails");
+console.log(movie);
 
-
-
-
-// Deleting av movie
+// Deleting movie
 const handleDelete = (id) => {
   MovieStore.update(currentMovies => {
     return currentMovies.filter(cm => cm.Id != id);
@@ -22,11 +21,7 @@ const handleDelete = (id) => {
 
 <Card> Tittel: {movie.Title} <br>
        År: {movie.Year} <br>
-       Hovedrolle: {movie.MainActor} <br>
-       Hylle: {movie.Rack}
-
-
-
+       Sjanger: {movie.Genre}
          <div class="delete">
           <Button flat={true} on:click={ () => handleDelete(movie.Id)}>Fjern</Button>
          </div>
