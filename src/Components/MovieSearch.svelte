@@ -15,14 +15,10 @@
         .then(response => response.json())
         .then(data => {
            movies = [...movies, data];
-        });
-              
+        });  
     }
 
     const removeFromSearch = (e) => {
-        console.log("Remove from search");
-        console.log("Movie:", e.detail);
-        console.log("Movies:", movies);
         movies = movies.filter(m => m.imdbID != e.detail.imdbID);
   };
 
