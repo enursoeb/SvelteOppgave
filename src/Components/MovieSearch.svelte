@@ -1,23 +1,28 @@
 
 <script>
    import MovieDetails from "./MovieDetails.svelte";
-   import SearchStore from "../Stores/SearchStore";
    import {flip} from 'svelte/animate';
    import {fade, slide, scale} from "svelte/transition";
 
     let search = '';
     let result;
     let isSearch = true;
+    let movies = [];
      
     const handleSubmit =  async ()  => {
         var apiUrl = `http://www.omdbapi.com/?t=${search}&apikey=311042d1`;
         var res = await fetch(apiUrl)
         .then(response => response.json())
         .then(data => {
-              result = data; 
-              searchStore = [...SearchStore, data]
-        })
-    };
+           movies = [...movies, data];
+        });
+              
+    }
+
+    const removeFromSearch = (e) => {
+       movies = movies.filter((m) => m.Id != e.detail.Id);
+  };
+
 </script>
 
 <!-- Search -->
@@ -27,9 +32,9 @@
 </form>
 
 <!-- display search results -->
-{#each SearchStore as movie  }
+{#each movies as movie  }
 <div class ="movie-results">
-        <MovieDetails {movie} {isSearch}/>
+        <MovieDetails {movie} {isSearch} on:removeFromSearch={removeFromSearch}/>
     </div>
     {/each}
    

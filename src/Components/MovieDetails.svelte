@@ -1,26 +1,28 @@
 <script>
   import Card from "../Shared/Card.svelte";
   import MovieStore from "../Stores/MovieStore";
-  import SearchStore from "../Stores/SearchStore";
   import Button from "../Shared/Button.svelte";
+  import { createEventDispatcher } from "svelte";
 
   export let movie;
   export let isSearch;
+  let dispatch = createEventDispatcher();
 
   // Deleting movie
   const handleDelete = (id) => {
+    console.log("I handleDelete", id)
     MovieStore.update((currentMovies) => {
-      return currentMovies.filter((cm) => cm.Id != id);
+      return currentMovies.filter( (cm) => cm.Id != id);
     });
   };
 
   // Move to collection
   const addToCollection = (id) => {
+       dispatch("removeFromSearch", movie);
+
         MovieStore.update(currentMovies => {
+         
           return [movie, ...currentMovies];
-        });
-          SearchStore.update(currentMovies => {
-      return currentMovies.filter((cm) => cm.Id != id);
         });
   };
 </script>
@@ -33,10 +35,10 @@
     <img class="image" src={movie.Poster} alt="{movie.Tittel}"/>
     <div class="delete">
       {#if !isSearch}
-      <Button flat={true} on:click={ () => handleDelete(movie.id)}>Slett</Button> 
+      <Button flat={true} on:click={ () => handleDelete(movie.Id)}>Slett</Button> 
       {/if}
       {#if isSearch}
-      <Button flat={true} type="secondary" on:click={ () => addToCollection(movie.id)}>Flytt til samling</Button> 
+      <Button flat={true} type="secondary" on:click={ () => addToCollection(movie.imdbID)}>Flytt til samling</Button> 
       {/if}
     </div>
   </div>
