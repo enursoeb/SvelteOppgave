@@ -3,9 +3,12 @@
   import MovieStore from "../Stores/MovieStore";
   import Button from "../Shared/Button.svelte";
   import { createEventDispatcher } from "svelte";
+  import Modal from './Modal.svelte';
+  import ChooseRackForm from './ChooseRackForm.svelte';
 
   export let movie;
   export let isSearch;
+  export let showModal = false;
   let dispatch = createEventDispatcher();
 
   // Deleting movie
@@ -17,19 +20,31 @@
 
   // Move to collection
   const addToCollection = (id) => {
-       dispatch("removeFromSearch", movie);
+
+    console.log("Add to collection");
+     toggleModal();
+    
+     dispatch("removeFromSearch", movie);
 
         MovieStore.update(currentMovies => {
-          movie.Id = movie.imdbID; 
+          movie.Id = movie.imdbID;
+          movie.Rack = "Uncategorized";
           return [movie, ...currentMovies];
         });
   };
+
+   // Open/close modal
+  const toggleModal = () => {
+      showModal = !showModal;
+      console.log("I toggleModal", showModal);
+    };
 </script>
 
 <Card>
   Tittel: {movie.Title} <br />
   År: {movie.Year} <br />
-  Sjanger: {movie.Genre}
+  Sjanger: {movie.Genre} <br>
+  Hylle: {movie.Rack} 
   <div>
     <img class="image" src={movie.Poster} alt="{movie.Tittel}"/>
     <div class="delete">
@@ -42,6 +57,10 @@
     </div>
   </div>
 </Card>
+
+<Modal {showModal} on:click={showModal}>
+  <ChooseRackForm></ChooseRackForm>
+  </Modal>
 
 
 <style>

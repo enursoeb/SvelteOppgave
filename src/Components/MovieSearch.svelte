@@ -1,43 +1,48 @@
-
 <script>
-   import MovieDetails from "./MovieDetails.svelte";
-   import {flip} from 'svelte/animate';
-   import {fade, slide, scale} from "svelte/transition";
+    import MovieDetails from "./MovieDetails.svelte";
+    import { flip } from "svelte/animate";
+    import { fade, slide, scale } from "svelte/transition";
 
-    let search = '';
+    let search = "";
     let result;
     let isSearch = true;
     let movies = [];
+    let showModal = false;
 
-    const handleSubmit =  async ()  => {
+    const handleSubmit = async () => {
         var apiUrl = `http://www.omdbapi.com/?t=${search}&apikey=311042d1`;
         var res = await fetch(apiUrl)
-        .then(response => response.json())
-        .then(data => {
-            console.log(data);
-           movies = [...movies, data];
-        });  
-    }
+            .then((response) => response.json())
+            .then((data) => {
+                console.log(data);
+                movies = [...movies, data];
+            });
+    };
 
     const removeFromSearch = (e) => {
-        movies = movies.filter(m => m.imdbID != e.detail.imdbID);
-  };
+        movies = movies.filter((m) => m.imdbID != e.detail.imdbID);
+    };
 
+   
 </script>
 
 <!-- Search -->
 <form on:submit|preventDefault={handleSubmit}>
-<input type="text"  placeholder="søk" bind:value={search}> 
+    <input type="text" placeholder="søk" bind:value={search} />
     <button>Søk</button>
 </form>
 
 <!-- display search results -->
-{#each movies as movie  }
-<div class ="movie-results">
-        <MovieDetails {movie} {isSearch} on:removeFromSearch={removeFromSearch}/>
+{#each movies as movie}
+    <div class="movie-results">
+        <MovieDetails
+            {movie}
+            {isSearch}
+            on:removeFromSearch={removeFromSearch}
+        />
     </div>
-    {/each}
-   
+{/each}
+
 <style>
     .movie-results {
         grid-template-columns: 100px 50px 100px;

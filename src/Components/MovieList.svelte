@@ -5,10 +5,6 @@
     import MovieStore from "../Stores/MovieStore";
     import MovieDetails from "./MovieDetails.svelte";
     let isSearch = false;
-
-
-    
-    
 </script>
 
 <div class ="movie-list">
