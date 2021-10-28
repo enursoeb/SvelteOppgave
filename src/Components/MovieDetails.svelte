@@ -10,7 +10,6 @@
 
   // Deleting movie
   const handleDelete = (id) => {
-    console.log("I handleDelete", id)
     MovieStore.update((currentMovies) => {
       return currentMovies.filter( (cm) => cm.Id != id);
     });
