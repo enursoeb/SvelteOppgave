@@ -14,6 +14,7 @@
         var res = await fetch(apiUrl)
         .then(response => response.json())
         .then(data => {
+            console.log(data);
            movies = [...movies, data];
         });  
     }
