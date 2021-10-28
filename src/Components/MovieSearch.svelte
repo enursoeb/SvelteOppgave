@@ -7,6 +7,7 @@
     let search = '';
     let result;
     let movies = [];
+    let isSearch = true;
      
     const handleSubmit =  async ()  => {
         var apiUrl = `http://www.omdbapi.com/?t=${search}&apikey=311042d1`;
@@ -28,7 +29,7 @@
 <!-- display search results -->
 {#each movies as movie  }
 <div class ="movie-results">
-        <MovieDetails {movie}/>
+        <MovieDetails {movie} {isSearch}/>
     </div>
     {/each}
    

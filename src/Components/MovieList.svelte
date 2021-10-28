@@ -4,13 +4,14 @@
 
     import MovieStore from "../Stores/MovieStore";
     import MovieDetails from "./MovieDetails.svelte";
+    let isSearch = false;
     
 </script>
 
 <div class ="movie-list">
     {#each $MovieStore as movie (movie.Id)}
     <div in:fade out:scale|local animate:flip={ {duration: 500}}>
-        <MovieDetails {movie}/>
+        <MovieDetails {movie} {isSearch}/>
     </div>
 {/each}
 </div>
