@@ -20,6 +20,18 @@ const MovieStore = writable(
             Title: "Gudfaren",
             Year: 1972,
             Genre: "Klassiker"
+        },
+        {
+            Id: 4,
+            Title: "Gudfare2",
+            Year: 1977,
+            Genre: "Klassiker"
+        },
+        {
+            Id: 5,
+            Title: "Gudfaren3",
+            Year: 1981,
+            Genre: "Klassiker"
         }
     ]);
 

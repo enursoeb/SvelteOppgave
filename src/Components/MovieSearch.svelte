@@ -1,12 +1,12 @@
 
 <script>
    import MovieDetails from "./MovieDetails.svelte";
+   import SearchStore from "../Stores/SearchStore";
    import {flip} from 'svelte/animate';
    import {fade, slide, scale} from "svelte/transition";
 
     let search = '';
     let result;
-    let movies = [];
     let isSearch = true;
      
     const handleSubmit =  async ()  => {
@@ -15,7 +15,7 @@
         .then(response => response.json())
         .then(data => {
               result = data; 
-              movies = [...movies, data]
+              searchStore = [...SearchStore, data]
         })
     };
 </script>
@@ -27,7 +27,7 @@
 </form>
 
 <!-- display search results -->
-{#each movies as movie  }
+{#each SearchStore as movie  }
 <div class ="movie-results">
         <MovieDetails {movie} {isSearch}/>
     </div>
@@ -35,8 +35,9 @@
    
 <style>
     .movie-results {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        grid-gap: 20px;
+        grid-template-columns: 100px 50px 100px;
+        grid-template-rows: 80px auto 80px;
+        column-gap: 10px;
+        row-gap: 15px;
     }
 </style>

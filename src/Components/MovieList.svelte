@@ -18,8 +18,9 @@
 
 <style>
     .movie-list {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        grid-gap: 20px;
+        grid-template-columns: 100px 50px 100px;
+        grid-template-rows: 80px auto 80px;
+        column-gap: 10px;
+        row-gap: 15px;
     }
 </style>
