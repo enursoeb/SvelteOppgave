@@ -54,3 +54,12 @@ const handleAdd = (e) => {
 		}
 	}
 </style>
+
+<!-- TODO:
+- Endre utseende i grid for filmoversikt og finn filmer
+- Filmoversikt: Filtrer filmer på "Hylle"
+- Finn filmer: Legg til "Hylle" (modal?) når film flyttes
+- Finn filmer: Søk med forskjellige parametre
+- Bugfix
+  - Feil når man flytter flere filmer fra søk til oversikt
+- Hjelpeside -->
