@@ -8,7 +8,7 @@
     let result;
     let isSearch = true;
     let movies = [];
-     
+
     const handleSubmit =  async ()  => {
         var apiUrl = `http://www.omdbapi.com/?t=${search}&apikey=311042d1`;
         var res = await fetch(apiUrl)
@@ -20,7 +20,10 @@
     }
 
     const removeFromSearch = (e) => {
-       movies = movies.filter((m) => m.Id != e.detail.Id);
+        console.log("Remove from search");
+        console.log("Movie:", e.detail);
+        console.log("Movies:", movies);
+        movies = movies.filter(m => m.imdbID != e.detail.imdbID);
   };
 
 </script>
