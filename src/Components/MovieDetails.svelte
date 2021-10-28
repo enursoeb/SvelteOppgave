@@ -20,7 +20,7 @@
        dispatch("removeFromSearch", movie);
 
         MovieStore.update(currentMovies => {
-         
+          movie.Id = movie.imdbID; 
           return [movie, ...currentMovies];
         });
   };
