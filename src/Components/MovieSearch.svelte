@@ -7,7 +7,6 @@
     let result;
     let isSearch = true;
     let movies = [];
-    let showModal = false;
 
     const handleSubmit = async () => {
         var apiUrl = `http://www.omdbapi.com/?t=${search}&apikey=311042d1`;

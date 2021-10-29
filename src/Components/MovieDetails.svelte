@@ -3,12 +3,10 @@
   import MovieStore from "../Stores/MovieStore";
   import Button from "../Shared/Button.svelte";
   import { createEventDispatcher } from "svelte";
-  import Modal from './Modal.svelte';
-  import ChooseRackForm from './ChooseRackForm.svelte';
+
 
   export let movie;
   export let isSearch;
-  export let showModal = false;
   let dispatch = createEventDispatcher();
 
   // Deleting movie
@@ -20,9 +18,6 @@
 
   // Move to collection
   const addToCollection = (id) => {
-
-    console.log("Add to collection");
-     toggleModal();
     
      dispatch("removeFromSearch", movie);
 
@@ -32,13 +27,8 @@
           return [movie, ...currentMovies];
         });
   };
-
-   // Open/close modal
-  const toggleModal = () => {
-      showModal = !showModal;
-      console.log("I toggleModal", showModal);
-    };
 </script>
+
 
 <Card>
   Tittel: {movie.Title} <br />
@@ -52,15 +42,12 @@
       <Button flat={true} on:click={ () => handleDelete(movie.Id)}>Slett</Button> 
       {/if}
       {#if isSearch}
-      <Button flat={true} type="secondary" on:click={ () => addToCollection(movie.imdbID)}>Flytt til samling</Button> 
+      <Button flat={true} type="secondary" on:click={ () => toggleModal()}>Flytt til samling</Button> 
       {/if}
     </div>
   </div>
 </Card>
 
-<Modal {showModal} on:click={showModal}>
-  <ChooseRackForm></ChooseRackForm>
-  </Modal>
 
 
 <style>
