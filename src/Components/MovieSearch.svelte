@@ -41,6 +41,7 @@
 
 <style>
     .movie-results {
+        display: grid;
         grid-template-columns: 100px 50px 100px;
         grid-template-rows: 80px auto 80px;
         column-gap: 10px;

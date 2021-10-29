@@ -29,9 +29,11 @@
         });
   };
 
+  // Open/close modal
 const toggleModal = () => {
   showModal = !showModal
 };
+
 
 const addRack = (e) => {
   movie.Rack = e.detail;
@@ -43,14 +45,14 @@ const addRack = (e) => {
 }
 </script>
 
-
+<div class="movie-results">
 <Card>
   Tittel: {movie.Title} <br />
   År: {movie.Year} <br />
   Sjanger: {movie.Genre} <br>
-  Hylle: {movie.Rack} 
-  <div>
-    <img class="image" src={movie.Poster} alt="{movie.Tittel}"/>
+  Hylle: {movie.Rack}  <br>
+  <div> <img class="image" src={movie.Poster} alt="{movie.Tittel}"/></div>
+   
     <div class="delete">
       {#if !isSearch}
       <Button flat={true} on:click={ () => handleDelete(movie.Id)}>Slett</Button> 
@@ -66,8 +68,8 @@ const addRack = (e) => {
       <Button flat={true} type="secondary" on:click={toggleModal}>Flytt til samling</Button> 
       {/if}
     </div>
-  </div>
 </Card>
+</div>
 
 <style>
 .image {
@@ -75,4 +77,13 @@ const addRack = (e) => {
  max-width: 480px;
  max-height: 240px;
 }
+
+    .movie-results {
+        display: grid;
+        grid-template-columns: auto auto auto;
+        grid-template-rows: auto auto auto;
+        column-gap: 10px;
+        row-gap: 15px;
+    }
 </style>
+
