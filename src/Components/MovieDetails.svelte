@@ -34,14 +34,15 @@ const toggleModal = () => {
 };
 
 const addRack = (e) => {
-  console.log("I addRack");
-  console.log("Rack:", e.detail);
-  console.log("Movie", movie);
+  console.log("AddRack");
   movie.Rack = e.detail;
   showModal = false;
-  addToCollection(movie);
-}
 
+  console.log("IsSearch:", isSearch);
+  if(isSearch) {
+    addToCollection(movie);
+  }
+}
 </script>
 
 
@@ -55,7 +56,10 @@ const addRack = (e) => {
     <div class="delete">
       {#if !isSearch}
       <Button flat={true} on:click={ () => handleDelete(movie.Id)}>Slett</Button> 
-      <Button flat={true} type="secondary">Endre hylle (wip)</Button>
+      <Modal {showModal} on:click={toggleModal}>
+        <AddRackForm on:addRack={addRack}/>
+      </Modal>   
+      <Button flat={true} type="secondary" on:click={toggleModal}>Endre hylle</Button>
       {/if}
       {#if isSearch}
       <Modal {showModal} on:click={toggleModal}>
