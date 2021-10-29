@@ -14,6 +14,9 @@
             .then((response) => response.json())
             .then((data) => {
                 if(data.Response == "True") {
+                    if(data.Poster == "N/A") {
+                        data.Poster = "Images/NoImage.jpg"
+                    }
                 movies = [...movies, data];
                 }
             });
