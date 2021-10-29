@@ -13,7 +13,9 @@
         var res = await fetch(apiUrl)
             .then((response) => response.json())
             .then((data) => {
+                if(data.Response == "True") {
                 movies = [...movies, data];
+                }
             });
     };
 
@@ -31,7 +33,6 @@
 <!-- display search results -->
 <div class="movie-list">
 {#each movies as movie}
-
         <MovieDetails
             {movie}
             {isSearch}
