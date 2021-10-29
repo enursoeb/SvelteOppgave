@@ -34,11 +34,9 @@ const toggleModal = () => {
 };
 
 const addRack = (e) => {
-  console.log("AddRack");
   movie.Rack = e.detail;
   showModal = false;
 
-  console.log("IsSearch:", isSearch);
   if(isSearch) {
     addToCollection(movie);
   }
@@ -70,8 +68,6 @@ const addRack = (e) => {
     </div>
   </div>
 </Card>
-
-
 
 <style>
 .image {

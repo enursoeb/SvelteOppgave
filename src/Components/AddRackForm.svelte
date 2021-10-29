@@ -4,7 +4,7 @@
     let dispatch = createEventDispatcher();
 
     let rack;
-
+    
     const handleSubmit = () => {
         dispatch('addRack', rack)
     }

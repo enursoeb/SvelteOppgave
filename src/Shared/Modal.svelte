@@ -1,6 +1,6 @@
 <script>
     export let showModal = false;
-    export let isPromo = true;
+    export let isPromo = false;
 </script>
 
 {#if showModal}

@@ -13,7 +13,6 @@
         var res = await fetch(apiUrl)
             .then((response) => response.json())
             .then((data) => {
-                console.log(data);
                 movies = [...movies, data];
             });
     };
@@ -21,8 +20,6 @@
     const removeFromSearch = (e) => {
         movies = movies.filter((m) => m.imdbID != e.detail.imdbID);
     };
-
-   
 </script>
 
 <!-- Search -->

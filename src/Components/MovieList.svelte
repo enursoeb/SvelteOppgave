@@ -8,7 +8,6 @@
     let rack = 'Alle';
 </script>
 
-
 <div class="dropdown"> 
     <h4>Filtrer samling etter hylle</h4> 
     <select bind:value={rack}>
