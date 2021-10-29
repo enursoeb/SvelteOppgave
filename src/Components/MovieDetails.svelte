@@ -3,10 +3,12 @@
   import MovieStore from "../Stores/MovieStore";
   import Button from "../Shared/Button.svelte";
   import { createEventDispatcher } from "svelte";
-
+  import Modal from "../Shared/Modal.svelte";
+  import AddRackForm from "./AddRackForm.svelte";
 
   export let movie;
   export let isSearch;
+  let showModal = false;
   let dispatch = createEventDispatcher();
 
   // Deleting movie
@@ -23,10 +25,23 @@
 
         MovieStore.update(currentMovies => {
           movie.Id = movie.imdbID;
-          movie.Rack = "Uncategorized";
           return [movie, ...currentMovies];
         });
   };
+
+const toggleModal = () => {
+  showModal = !showModal
+};
+
+const addRack = (e) => {
+  console.log("I addRack");
+  console.log("Rack:", e.detail);
+  console.log("Movie", movie);
+  movie.Rack = e.detail;
+  showModal = false;
+  addToCollection(movie);
+}
+
 </script>
 
 
@@ -40,9 +55,13 @@
     <div class="delete">
       {#if !isSearch}
       <Button flat={true} on:click={ () => handleDelete(movie.Id)}>Slett</Button> 
+      <Button flat={true} type="secondary">Endre hylle (wip)</Button>
       {/if}
       {#if isSearch}
-      <Button flat={true} type="secondary" on:click={ () => toggleModal()}>Flytt til samling</Button> 
+      <Modal {showModal} on:click={toggleModal}>
+      <AddRackForm on:addRack={addRack}/>
+    </Modal>   
+      <Button flat={true} type="secondary" on:click={toggleModal}>Flytt til samling</Button> 
       {/if}
     </div>
   </div>
