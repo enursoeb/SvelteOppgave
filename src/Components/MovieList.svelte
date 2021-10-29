@@ -31,10 +31,13 @@
 
 <style>
     .movie-list {
-        grid-template-columns: 100px 50px 100px;
-        grid-template-rows: 80px auto 80px;
-        column-gap: 10px;
-        row-gap: 15px;
+        display: grid;
+        place-items: center;
+        grid-template-columns: auto auto auto auto;
+        grid-template-rows: auto auto auto auto;
+        align-content: space-between;
+        column-gap: 5px;
+        row-gap: 5px;
     }
 
     .dropdown {

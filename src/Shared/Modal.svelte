@@ -14,10 +14,10 @@
 
 <style>
     .backdrop {
-        width: 100%;
-        height: 100%;
+        width: auto;
+        height: auto;
         position: fixed;
-        background: rgba(0, 0, 0, 0.8);
+        background: white;
     }
 
     .modal {
