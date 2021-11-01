@@ -31,6 +31,11 @@
         });
   };
 
+
+  const removeSearch = (id) => {
+    dispatch("removeFromSearch", movie);
+  };
+
   // Open/close modal
 const toggleModal = () => {
   showModal = !showModal
@@ -43,6 +48,8 @@ const addRack = (e) => {
   if(isSearch) {
     addToCollection(movie);
   }
+
+ 
 }
 </script>
 
@@ -67,6 +74,9 @@ const addRack = (e) => {
       <AddRackForm on:addRack={addRack}/>
     </Modal>   
       <Button flat={true} type="secondary" on:click={toggleModal}>Flytt til samling</Button> 
+      {/if}
+      {#if isSearch}
+      <Button flat={true} on:click={removeSearch}>Fjern fra søk</Button> 
       {/if}
     </div>
 </Card>
