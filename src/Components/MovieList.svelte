@@ -1,7 +1,6 @@
 <script>
     import {flip} from 'svelte/animate';
     import {fade, slide, scale} from "svelte/transition";
-
     import MovieStore from "../Stores/MovieStore";
     import RackStore from "../Stores/RackStore";
     import MovieDetails from "./MovieDetails.svelte";
@@ -21,7 +20,6 @@
 
 <div class ="movie-list">
     {#each $MovieStore as movie (movie.Id)}
-    
     <div in:fade out:scale|local animate:flip={ {duration: 500}}>
         {#if movie.Rack === rack || rack === 'Alle'}
         <MovieDetails {movie} {isSearch} disableButton=false/>
