@@ -1,6 +1,7 @@
 <script>
   import Card from "../Shared/Card.svelte";
   import MovieStore from "../Stores/MovieStore";
+  import RackStore from "../Stores/RackStore";
   import Button from "../Shared/Button.svelte";
   import { createEventDispatcher } from "svelte";
   import Modal from "../Shared/Modal.svelte";
@@ -42,7 +43,19 @@
 
   // Add rack for provided movie
   const addRack = (e) => {
-    movie.Rack = e.detail;
+    movie.Rack = e.detail.rackName;
+
+    if (e.detail.isNew) {
+      let newRack = {
+        Id: movie.Id,
+        Name: movie.Rack,
+      };
+
+      RackStore.update((currentRacks) => {
+        return [newRack, ...currentRacks];
+      });
+    }
+
     showModal = false;
 
     if (isSearch) {

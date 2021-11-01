@@ -1,31 +1,31 @@
 <script>
-    import {flip} from 'svelte/animate';
-    import {fade, slide, scale} from "svelte/transition";
+    import { flip } from "svelte/animate";
+    import { fade, slide, scale } from "svelte/transition";
     import MovieStore from "../Stores/MovieStore";
     import RackStore from "../Stores/RackStore";
     import MovieDetails from "./MovieDetails.svelte";
     let isSearch = false;
-    let rack = 'Alle';
+    let rack = "Alle";
 </script>
 
-<div class="dropdown"> 
-    <h4>Filtrer samling etter hylle</h4> 
+<div class="dropdown">
+    <h4>Filtrer samling etter hylle</h4>
     <select bind:value={rack}>
-        {#each $RackStore as rs }
-        <option value={rs}>{rs.Name}</option>
+        {#each $RackStore as rs}
+            <option value={rs.Name}>{rs.Name}</option>
         {/each}
         <option value="Alle">Alle</option>
     </select>
 </div>
 
-<div class ="movie-list">
+<div class="movie-list">
     {#each $MovieStore as movie (movie.Id)}
-    <div in:fade out:scale|local animate:flip={ {duration: 500}}>
-        {#if movie.Rack === rack || rack === 'Alle'}
-        <MovieDetails {movie} {isSearch} disableButton=false/>
-        {/if}
-    </div>
-{/each}
+        <div in:fade out:scale|local animate:flip={{ duration: 500 }}>
+            {#if movie.Rack === rack || rack === "Alle"}
+                <MovieDetails {movie} {isSearch} disableButton="false" />
+            {/if}
+        </div>
+    {/each}
 </div>
 
 <style>
@@ -41,6 +41,6 @@
 
     .dropdown {
         margin-top: 12px;
-       margin-bottom: 12px;
-}
+        margin-bottom: 12px;
+    }
 </style>
