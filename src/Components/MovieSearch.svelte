@@ -6,12 +6,9 @@
     import {get} from 'svelte/store';
 
     let search = "";
-    let result;
     let isSearch = true;
-    let movies = [];
-    let disableButton = false;
-    let moviesWithDisabledButtons = [];
-
+    let searchResult = [];
+    
     const handleSubmit = async () => {
         var apiUrl = `http://www.omdbapi.com/?t=${search}&apikey=311042d1`;
         var res = await fetch(apiUrl)
@@ -21,16 +18,16 @@
                     if(data.Poster == "N/A") {
                         data.Poster = "Images/NoImage.jpg";
                     }
-                movies = [...movies, data];
+                searchResult = [...searchResult, data];
                 }
             });
     };
 
-    const removeFromSearch = (e) => {
-        movies = movies.filter((m) => m.imdbID != e.detail.imdbID);
+    const removeFromSearch = (movieToBeRemoved) => {
+        searchResult = searchResult.filter((sr) => sr.imdbID != movieToBeRemoved.detail.imdbID);
     };
 
-   let test = get(MovieStore);
+   let movieCollection = get(MovieStore);
 </script>
 
 <!-- Search -->
@@ -41,11 +38,11 @@
 
 <!-- display search results -->
 <div class="movie-list">
-{#each movies as movie}
+{#each searchResult as movie}
         <MovieDetails
             {movie}
             {isSearch}
-            disableButton =  {test.find(t => t.Id == movie.imdbID) != undefined}
+            disableButton =  {movieCollection.find(mc => mc.Id == movie.imdbID) != undefined}
             on:removeFromSearch={removeFromSearch}
         />
 {/each}

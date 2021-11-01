@@ -31,7 +31,6 @@
         });
   };
 
-
   const removeSearch = (id) => {
     dispatch("removeFromSearch", movie);
   };
@@ -48,8 +47,6 @@ const addRack = (e) => {
   if(isSearch) {
     addToCollection(movie);
   }
-
- 
 }
 </script>
 
@@ -88,7 +85,6 @@ const addRack = (e) => {
  max-width: 480px;
  max-height: 240px;
 }
-
     .movie-results {
         display: grid;
         grid-template-columns: auto auto auto;
