@@ -7,6 +7,7 @@
   import Modal from "../Shared/Modal.svelte";
   import AddRackForm from "./AddRackForm.svelte";
   import { get } from "svelte/store";
+  import { Confirm } from "svelte-confirm";
 
   export let movie;
   export let isSearch;
@@ -15,7 +16,7 @@
   let dispatch = createEventDispatcher();
 
   // Remove movie from collection
-  const handleDelete = (id) => {
+  const deleteItem = (id) => {
     MovieStore.update((currentMovies) => {
       return currentMovies.filter((cm) => cm.Id != id);
     });
@@ -74,9 +75,23 @@
 
     <div class="delete">
       {#if !isSearch}
-        <Button flat={true} on:click={() => handleDelete(movie.Id)}
-          >Slett</Button
-        >
+        <Confirm 
+        confirmTitle="Slett film"
+        cancelTitle="Avbryt"
+        let:confirm="{confirmThis}">
+          <Button
+            flat={true}
+            on:click="{() => confirmThis(deleteItem, movie.Id)}"
+          >
+            Slett</Button
+          >
+          <span slot="title">
+            Vil du slette filmen?
+          </span>
+          <span slot="description">
+            Filmen vil ikke være mulig å gjenoprrette!
+          </span>
+        </Confirm>
         <Modal {showModal} on:click={toggleModal}>
           <AddRackForm on:addRack={addRack} />
         </Modal>
