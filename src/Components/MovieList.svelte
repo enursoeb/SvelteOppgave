@@ -3,6 +3,7 @@
     import {fade, slide, scale} from "svelte/transition";
 
     import MovieStore from "../Stores/MovieStore";
+    import RackStore from "../Stores/RackStore";
     import MovieDetails from "./MovieDetails.svelte";
     let isSearch = false;
     let rack = 'Alle';
@@ -11,10 +12,10 @@
 <div class="dropdown"> 
     <h4>Filtrer samling etter hylle</h4> 
     <select bind:value={rack}>
-        <option value="Stallone">Stallone</option>
-        <option value="Stumfilmer">Stumfilmer</option>
-        <option value="Mafiafilmer">Mafiafilmer</option>
-        <option value="Alle">Vis alle</option>
+        {#each $RackStore as rs }
+        <option value={rs}>{rs.Name}</option>
+        {/each}
+        <option value="Alle">Alle</option>
     </select>
 </div>
 
