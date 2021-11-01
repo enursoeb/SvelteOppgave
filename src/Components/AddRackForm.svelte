@@ -68,7 +68,7 @@
     <br />
     <button>Lagre endringer</button>
     {#if !validation}
-    <div class="warning"> Navn må fylles ut hvis opprett ny hylle er valgt!</div>
+    <div class="warning"> Navn må fylles ut hvis 'opprett ny hylle' er valgt!</div>
     {/if}
 </form>
 
