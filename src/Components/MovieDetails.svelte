@@ -5,9 +5,11 @@
   import { createEventDispatcher } from "svelte";
   import Modal from "../Shared/Modal.svelte";
   import AddRackForm from "./AddRackForm.svelte";
+  import {get} from 'svelte/store';
 
   export let movie;
   export let isSearch;
+  export let disableButton = false;
   let showModal = false;
   let dispatch = createEventDispatcher();
 
@@ -33,7 +35,6 @@
 const toggleModal = () => {
   showModal = !showModal
 };
-
 
 const addRack = (e) => {
   movie.Rack = e.detail;
@@ -61,7 +62,7 @@ const addRack = (e) => {
       </Modal>   
       <Button flat={true} type="secondary" on:click={toggleModal}>Endre hylle</Button>
       {/if}
-      {#if isSearch}
+      {#if isSearch && disableButton === false}
       <Modal {showModal} on:click={toggleModal}>
       <AddRackForm on:addRack={addRack}/>
     </Modal>   

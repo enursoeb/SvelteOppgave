@@ -2,11 +2,15 @@
     import MovieDetails from "./MovieDetails.svelte";
     import { flip } from "svelte/animate";
     import { fade, slide, scale } from "svelte/transition";
+    import MovieStore from "../Stores/MovieStore"; 
+    import {get} from 'svelte/store';
 
     let search = "";
     let result;
     let isSearch = true;
     let movies = [];
+    let disableButton = false;
+    let moviesWithDisabledButtons = [];
 
     const handleSubmit = async () => {
         var apiUrl = `http://www.omdbapi.com/?t=${search}&apikey=311042d1`;
@@ -15,7 +19,7 @@
             .then((data) => {
                 if(data.Response == "True") {
                     if(data.Poster == "N/A") {
-                        data.Poster = "Images/NoImage.jpg"
+                        data.Poster = "Images/NoImage.jpg";
                     }
                 movies = [...movies, data];
                 }
@@ -25,6 +29,8 @@
     const removeFromSearch = (e) => {
         movies = movies.filter((m) => m.imdbID != e.detail.imdbID);
     };
+
+   let test = get(MovieStore);
 </script>
 
 <!-- Search -->
@@ -39,6 +45,7 @@
         <MovieDetails
             {movie}
             {isSearch}
+            disableButton =  {test.find(t => t.Id == movie.imdbID) != undefined}
             on:removeFromSearch={removeFromSearch}
         />
 {/each}

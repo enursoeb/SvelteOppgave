@@ -1,6 +1,6 @@
 import { writable } from "svelte/store";
 
-const MovieStore = writable(
+const MovieStore =  writable(
     [
         {
             Id: 1,

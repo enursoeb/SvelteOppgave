@@ -23,7 +23,7 @@
     
     <div in:fade out:scale|local animate:flip={ {duration: 500}}>
         {#if movie.Rack === rack || rack === 'Alle'}
-        <MovieDetails {movie} {isSearch}/>
+        <MovieDetails {movie} {isSearch} disableButton=false/>
         {/if}
     </div>
 {/each}
