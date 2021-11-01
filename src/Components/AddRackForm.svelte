@@ -8,6 +8,7 @@
     let rackSelect;
     let newValue = true;
     let existingValues = false;
+    let validation = false;
 
     const handleSubmit = () => {
         let inputRack = {
@@ -20,13 +21,24 @@
             inputRack.isNew = false;
         }
 
+        validate();
+
+        if(validation)
         dispatch("addRack", inputRack);
     };
 
     const toggleInputMethods = () => {
         newValue = !newValue;
         existingValues = !existingValues;
+        validate();
     };
+
+    const validate = (rack) => {
+        console.log("Validate", rack)
+
+        if(existingValues || (rack != "navn på ny hylle" && rack != "")) validation = true;
+        else validation = false;
+    }
 </script>
 
 <form on:submit|preventDefault={handleSubmit}>
@@ -34,7 +46,7 @@
     <input type="checkbox" checked={newValue} on:click={toggleInputMethods} />
 
     {#if newValue}
-        <input type="text" placeholder="navn på ny hylle" bind:value={rack} />
+        <input type="text" placeholder="navn på ny hylle" bind:value={rack}  on:keypress={validate(rack)}/>
         <br />
     {/if}
 
@@ -55,4 +67,13 @@
     {/if}
     <br />
     <button>Lagre endringer</button>
+    {#if !validation}
+    <div class="warning"> Navn må fylles ut hvis opprett ny hylle er valgt!</div>
+    {/if}
 </form>
+
+<style>
+    .warning {
+        color: red;
+    }
+</style>
