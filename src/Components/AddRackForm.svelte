@@ -23,8 +23,7 @@
 
         validate();
 
-        if(validation)
-        dispatch("addRack", inputRack);
+        if (validation) dispatch("addRack", inputRack);
     };
 
     const toggleInputMethods = () => {
@@ -34,25 +33,36 @@
     };
 
     const validate = (rack) => {
-        console.log("Validate", rack)
+        console.log("Validate", rack);
 
-        if(existingValues || (rack != "navn på ny hylle" && rack != "")) validation = true;
+        if (existingValues || (rack != "navn på ny hylle" && rack != ""))
+            validation = true;
         else validation = false;
-    }
+    };
 </script>
 
 <form on:submit|preventDefault={handleSubmit}>
     Opprett ny hylle
-    <input type="checkbox" class="checkbox" checked={newValue} on:click={toggleInputMethods} />
+    <input
+        type="checkbox"
+        class="checkbox"
+        checked={newValue}
+        on:click={toggleInputMethods}
+    />
     Velg fra eksisterende hyller
     <input
         type="checkbox"
         checked={existingValues}
         on:click={toggleInputMethods}
-    /> <br> <br>
+    /> <br /> <br />
 
     {#if newValue}
-        <input type="text" placeholder="navn på ny hylle" bind:value={rack}  on:keypress={validate(rack)}/>
+        <input
+            type="text"
+            placeholder="navn på ny hylle"
+            bind:value={rack}
+            on:keypress={validate(rack)}
+        />
         <br />
     {/if}
 
@@ -67,7 +77,9 @@
     <br />
     <button>Lagre endringer</button>
     {#if !validation}
-    <div class="warning"> Navn må fylles ut hvis 'opprett ny hylle' er valgt!</div>
+        <div class="warning">
+            Navn må fylles ut hvis 'opprett ny hylle' er valgt!
+        </div>
     {/if}
 </form>
 
