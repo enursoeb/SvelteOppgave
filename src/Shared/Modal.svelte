@@ -1,36 +1,81 @@
 <script>
-    export let showModal = false;
-    export let isPromo = false;
+	import { createEventDispatcher, onDestroy } from 'svelte';
+
+	const dispatch = createEventDispatcher();
+	const close = () => dispatch('close');
+
+	let modal;
+
+	const handle_keydown = e => {
+		if (e.key === 'Escape') {
+			close();
+			return;
+		}
+
+		if (e.key === 'Tab') {
+			// trap focus
+			const nodes = modal.querySelectorAll('*');
+			const tabbable = Array.from(nodes).filter(n => n.tabIndex >= 0);
+
+			let index = tabbable.indexOf(document.activeElement);
+			if (index === -1 && e.shiftKey) index = 0;
+
+			index += tabbable.length + (e.shiftKey ? -1 : 1);
+			index %= tabbable.length;
+
+			tabbable[index].focus();
+			e.preventDefault();
+		}
+	};
+
+	const previously_focused = typeof document !== 'undefined' && document.activeElement;
+
+	if (previously_focused) {
+		onDestroy(() => {
+			previously_focused.focus();
+		});
+	}
 </script>
 
-{#if showModal}
-<div class="backdrop" class:promo={isPromo} on:click|self>
-    <div class=modal> 
-        <slot></slot>
-        <!-- <slot name="title"></slot> -->
-    </div>
+<svelte:window on:keydown={handle_keydown}/>
+
+<div class="modal-background" on:click={close}></div>
+
+<div class="modal" role="dialog" aria-modal="true" bind:this={modal}>
+	<slot name="header"></slot>
+	<hr>
+	<slot></slot>
+	<hr>
+
+	<!-- svelte-ignore a11y-autofocus -->
+	<button autofocus on:click={close}>Avbryt</button>
 </div>
-{/if}
 
 <style>
-    .backdrop {
-        width: auto;
-        height: auto;
-        position: fixed;
-        background: white;
-    }
+	.modal-background {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background: rgba(0,0,0,0.3);
+	}
 
-    .modal {
-        padding: 10px;
-        border-radius: 10px;
-        max-width: 400px;
-        margin: 10% auto;
-        text-align: center;
-        background: white;
-    }
+	.modal {
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		width: calc(100vw - 4em);
+		max-width: 32em;
+		max-height: calc(100vh - 4em);
+		overflow: auto;
+		transform: translate(-50%,-50%);
+		padding: 1em;
+		border-radius: 0.2em;
+		background: white;
+	}
 
-    .promo .modal {
-        background: crimson;
-        color: white;
-    }
+	button {
+		display: block;
+	}
 </style>

@@ -43,19 +43,18 @@
 
 <form on:submit|preventDefault={handleSubmit}>
     Opprett ny hylle
-    <input type="checkbox" checked={newValue} on:click={toggleInputMethods} />
-
-    {#if newValue}
-        <input type="text" placeholder="navn på ny hylle" bind:value={rack}  on:keypress={validate(rack)}/>
-        <br />
-    {/if}
-
+    <input type="checkbox" class="checkbox" checked={newValue} on:click={toggleInputMethods} />
     Velg fra eksisterende hyller
     <input
         type="checkbox"
         checked={existingValues}
         on:click={toggleInputMethods}
-    />
+    /> <br> <br>
+
+    {#if newValue}
+        <input type="text" placeholder="navn på ny hylle" bind:value={rack}  on:keypress={validate(rack)}/>
+        <br />
+    {/if}
 
     {#if existingValues}
         <select bind:value={rackSelect}>
@@ -75,5 +74,10 @@
 <style>
     .warning {
         color: red;
+    }
+
+    .checkbox {
+        margin-left: 12px;
+        margin-right: 12px;
     }
 </style>

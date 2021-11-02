@@ -73,8 +73,17 @@
     Hylle: {movie.Rack} <br />
     <div><img class="image" src={movie.Poster} alt={movie.Tittel} /></div>
 
-    <div class="delete">
+    
       {#if !isSearch}
+        
+        {#if showModal}
+        <Modal on:close="{() => showModal = false}">
+          <AddRackForm on:addRack={addRack} />
+        </Modal>
+        {/if}
+        <Button flat={true} type="secondary" on:click={toggleModal}
+          >Endre hylle</Button
+        >
         <Confirm 
         confirmTitle="Slett film"
         cancelTitle="Avbryt"
@@ -92,17 +101,13 @@
             Filmen vil ikke være mulig å gjenoprrette!
           </span>
         </Confirm>
-        <Modal {showModal} on:click={toggleModal}>
-          <AddRackForm on:addRack={addRack} />
-        </Modal>
-        <Button flat={true} type="secondary" on:click={toggleModal}
-          >Endre hylle</Button
-        >
       {/if}
       {#if isSearch && disableButton === false}
-        <Modal {showModal} on:click={toggleModal}>
+        {#if showModal}
+        <Modal on:close="{() => showModal = false}">
           <AddRackForm on:addRack={addRack} />
         </Modal>
+        {/if}
         <Button flat={true} type="secondary" on:click={toggleModal}
           >Flytt til samling</Button
         >
@@ -110,7 +115,6 @@
       {#if isSearch}
         <Button flat={true} on:click={removeSearch}>Fjern fra søk</Button>
       {/if}
-    </div>
   </Card>
 </div>
 
