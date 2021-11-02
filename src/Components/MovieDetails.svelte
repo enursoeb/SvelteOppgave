@@ -74,6 +74,7 @@
     {#if !isSearch}
       {#if showModal}
         <Modal on:close={() => (showModal = false)}>
+          <h2 slot="header">Endre hylle</h2>
           <AddRackForm on:addRack={addRack} />
         </Modal>
       {/if}
@@ -97,6 +98,7 @@
     {#if isSearch && disableButton === false}
       {#if showModal}
         <Modal on:close={() => (showModal = false)}>
+          <h2 slot="header">Velg hylle</h2>
           <AddRackForm on:addRack={addRack} />
         </Modal>
       {/if}

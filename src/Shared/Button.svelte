@@ -1,13 +1,13 @@
 <script>
-    export let type = 'primary';
+    export let type = "primary";
     export let flat = false;
     export let inverse = false;
 </script>
 
-<button class={type} class:flat={flat} class:inverse={inverse} on:click> 
-    <slot></slot>
+<button class={type} class:flat class:inverse on:click>
+    <slot />
 </button>
- 
+
 <style>
     button {
         border: 0;
@@ -20,28 +20,28 @@
     }
 
     .primary {
-    background: #d91b42;
-    color: white;
-}
+        background: #d91b42;
+        color: white;
+    }
 
-.secondary {
-    background: #45c496;
-    color: white;
-}
+    .secondary {
+        background: #45c496;
+        color: white;
+    }
 
-.flat {
-    box-shadow: none;
-}
+    .flat {
+        box-shadow: none;
+    }
 
-.primary.inverse {
- color: #d91b42;
- background: white;
- border: 2px solid #d91b42;
-}
+    .primary.inverse {
+        color: #d91b42;
+        background: white;
+        border: 2px solid #d91b42;
+    }
 
-.secondary.inverse {
-    color: #45c496;
-    background: white;
-    border: 2px solid #45c496 ;
-}
+    .secondary.inverse {
+        color: #45c496;
+        background: white;
+        border: 2px solid #45c496;
+    }
 </style>

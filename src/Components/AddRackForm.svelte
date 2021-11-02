@@ -1,6 +1,8 @@
 <script>
     import { createEventDispatcher } from "svelte";
     import RackStore from "../Stores/RackStore";
+    import Button from "../Shared/Button.svelte";
+
     import { get } from "svelte/store";
     let dispatch = createEventDispatcher();
 
@@ -75,12 +77,15 @@
         </select>
     {/if}
     <br />
-    <button>Lagre endringer</button>
     {#if !validation}
         <div class="warning">
             Navn må fylles ut hvis 'opprett ny hylle' er valgt!
         </div>
-    {/if}
+    {/if} <br />
+    <Button flat={true} type="secondary" on:click={handleSubmit}
+        >Lagre endringer</Button
+    >
+    <Button flat={true} on:click={dispatch("close")}>Avbryt</Button>
 </form>
 
 <style>

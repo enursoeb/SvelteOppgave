@@ -1,21 +1,22 @@
 <script>
-	import { createEventDispatcher, onDestroy } from 'svelte';
+	import { createEventDispatcher, onDestroy } from "svelte";
+	import Button from "../Shared/Button.svelte";
 
 	const dispatch = createEventDispatcher();
-	const close = () => dispatch('close');
+	const close = () => dispatch("close");
 
 	let modal;
 
-	const handle_keydown = e => {
-		if (e.key === 'Escape') {
+	const handle_keydown = (e) => {
+		if (e.key === "Escape") {
 			close();
 			return;
 		}
 
-		if (e.key === 'Tab') {
+		if (e.key === "Tab") {
 			// trap focus
-			const nodes = modal.querySelectorAll('*');
-			const tabbable = Array.from(nodes).filter(n => n.tabIndex >= 0);
+			const nodes = modal.querySelectorAll("*");
+			const tabbable = Array.from(nodes).filter((n) => n.tabIndex >= 0);
 
 			let index = tabbable.indexOf(document.activeElement);
 			if (index === -1 && e.shiftKey) index = 0;
@@ -28,7 +29,8 @@
 		}
 	};
 
-	const previously_focused = typeof document !== 'undefined' && document.activeElement;
+	const previously_focused =
+		typeof document !== "undefined" && document.activeElement;
 
 	if (previously_focused) {
 		onDestroy(() => {
@@ -37,18 +39,19 @@
 	}
 </script>
 
-<svelte:window on:keydown={handle_keydown}/>
+<svelte:window on:keydown={handle_keydown} />
 
-<div class="modal-background" on:click={close}></div>
+<div class="modal-background" on:click={close} />
 
 <div class="modal" role="dialog" aria-modal="true" bind:this={modal}>
-	<slot name="header"></slot>
-	<hr>
-	<slot></slot>
-	<hr>
+	<slot name="header" />
+	<hr />
+	<slot />
+	<hr />
 
 	<!-- svelte-ignore a11y-autofocus -->
-	<button autofocus on:click={close}>Avbryt</button>
+	<!-- <button class="button" flat={true} autofocus on:click={close}>Avbryt</button
+	> -->
 </div>
 
 <style>
@@ -58,7 +61,7 @@
 		left: 0;
 		width: 100%;
 		height: 100%;
-		background: rgba(0,0,0,0.3);
+		background: rgba(0, 0, 0, 0.3);
 	}
 
 	.modal {
@@ -69,13 +72,22 @@
 		max-width: 32em;
 		max-height: calc(100vh - 4em);
 		overflow: auto;
-		transform: translate(-50%,-50%);
+		transform: translate(-50%, -50%);
 		padding: 1em;
 		border-radius: 0.2em;
 		background: white;
 	}
 
-	button {
+	.button {
 		display: block;
+		background: #d91b42;
+		color: white;
+		border: 0;
+		cursor: pointer;
+		border-radius: 6px;
+		padding: 8px 12px;
+		font-weight: bold;
+		margin-top: 13px;
+		box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.2);
 	}
 </style>
