@@ -12,12 +12,16 @@
     velge hylle i nedtrekksmenyen under 'Filtrer samling etter
     hylle'.
 </div>
-<img class="image" src="Images/DropDown.png" alt="velg hylle" />
+
+<figure><img class="image" src="Images/DropDown.png" alt="velg hylle" />
+    <figcaption>Velg hylle</figcaption></figure>
 
 <div>
     Hvis du ønsker å ikke filtrere på hylle, velg <b>Alle</b> i nedtrekkslista.
 </div>
-<img class="image" src="Images/DropDownAll.png" alt="vis alle filmer" />
+<figure><img class="image" src="Images/DropDownAll.png" alt="vis alle filmer" />
+    <figcaption>Vis alle filmer</figcaption>
+</figure>
 
 <div class="text">
     Etter at man har valgt foretrukket visningsmetode, vil det for hver film i <br
@@ -31,7 +35,8 @@
     Ved klikk på <b>endre hylle</b>, vil det dukke opp en dialogboks. Se
     <a href="#modal">her </a> for instruksjoner om hvordan den virker.
 </div>
-<img class="image" src="Images/MovieOptions.png" alt="movieoptions" />
+<figure><img class="image" src="Images/MovieOptions.png" alt="movieoptions" />
+    <figcaption>Filmvalg</figcaption></figure>
 
 <a name="moviesearch"><h3 id="findmovies">Finn filmer</h3></a>
 <div class="text">
@@ -46,7 +51,9 @@
     for å fjerne film fra søkeresultater. <br />
 </div>
 
-<img class="image" src="Images/MovieSearch.png" alt="moviesearch" />
+<figure><img class="image" src="Images/MovieSearch.png" alt="moviesearch" />
+    <figcaption>Søk etter filmer</figcaption>
+</figure>
 
 <div class="text">
     <a name="modal">
@@ -76,8 +83,8 @@
         margin-bottom: 12px;
         margin-right: 12px;
         margin-left: 12px;
-        width: 420px;
-        height: 275px;
+        width: 520px;
+        height: 310px;
     }
 
     .edit {
@@ -90,5 +97,10 @@
 
     .text {
         text-align: center;
+    }
+
+    figcaption {
+      font-style: italic;
+      font-size: smaller;
     }
 </style>
