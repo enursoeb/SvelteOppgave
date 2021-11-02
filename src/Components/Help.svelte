@@ -22,7 +22,7 @@
     Etter at man har valgt foretrukket visningsmetode, vil det for hver film i <br>
     samlingen vises  informasjon og bilde av filmplakaten. <br /> For hver film kan man velge å
     knytte filmen til ny hylle ved å klikke <edit class="edit">endre hylle-knappen </edit> <br>
-    eller fjerne filmen ved å klikke <delete class="deleteMovie">slett-knappen.</delete>.
+    eller fjerne filmen ved å klikke <delete class="deleteMovie">slett-knappen.</delete>
 
     Ved klikk på <b>endre hylle</b>, vil det dukke opp en dialogboks. Se <a href="#modal">her </a> for instruksjoner om hvordan
     den virker.
@@ -44,24 +44,33 @@ eller <br> <delete class="deleteMovie">rød knapp</delete> for å fjerne film fr
 
 <img class="image" src="Images/MovieSearch.png" alt="moviesearch" />
 
-
+<div>
 <a name="modal">
-
 <h4>Endre hylle / Flytt til samling</h4>
-
-
 </a>
+Når man velger å flytte film til søk fra samling, eller endre hylle på søkesiden, <br>
+vil det dukke opp et nytt vindu hvor man bes om informasjon om hylla til filmen. <br>
+Her kan man velge å enten <b>opprette ny hylle </b>, eller <b> <br>velge  fra allerede eksisterende hyller</b>,
+dette velges ved å klikke på boksen til høyre for ønsket valg.
+Angi ditt valg med å skrive inn navn i tekstboksen eller klikk ønsket hylle fra rullegardinmenyen, og klikk deretter på
+lagre endringer. Hvis du angrer og ikke ønsker å lagre, klikk på avbryt-knappen.
 
+</div>
+
+<img class="image" src="Images/ModalTextInput.png" alt="modaltext"/>
+<img class="image" src="Images/ModalSelect.png" alt="modalselect"/>
 
 <style>
     .image {
-        display: inline-block;
+        /* display: inline-block; */
         align-content: center;
         border: 5px solid #555;
         margin-top: 12px;
         margin-bottom: 12px;
-        max-width: 420px;
-        max-height: 380px;
+        margin-right: 12px;
+        margin-left: 12px;
+        max-width: 360;
+        max-height: 245;
     }
 
     .edit {
