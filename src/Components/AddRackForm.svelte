@@ -6,12 +6,12 @@
     import { get } from "svelte/store";
     let dispatch = createEventDispatcher();
 
-    let rack;
+    let rack = "";
     let rackSelect;
     let newValue = true;
     let existingValues = false;
-    let validation = false;
-
+    let validation = true;
+    
     const handleSubmit = () => {
         let inputRack = {
             rackName: rack,
@@ -26,6 +26,7 @@
         validate();
 
         if (validation) dispatch("addRack", inputRack);
+
     };
 
     const toggleInputMethods = () => {
@@ -34,8 +35,11 @@
         validate();
     };
 
-    const validate = (rack) => {
-        console.log("Validate", rack);
+    const validate = () => {
+
+        console.log("Rack", rack);
+        console.log("ExistingValues", existingValues)
+        console.log("Validating.....", existingValues || (rack != "navn på ny hylle" && rack != ""));
 
         if (existingValues || (rack != "navn på ny hylle" && rack != ""))
             validation = true;
@@ -63,7 +67,7 @@
             type="text"
             placeholder="navn på ny hylle"
             bind:value={rack}
-            on:keypress={validate(rack)}
+            on:keyup={validate}
         />
         <br />
     {/if}
