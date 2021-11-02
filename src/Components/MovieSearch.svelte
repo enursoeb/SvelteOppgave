@@ -79,11 +79,14 @@
 
 <style>
     .movie-list {
-        display: grid;
-        grid-template-columns: auto auto auto;
-        grid-template-rows: auto auto auto;
-        column-gap: 10px;
-        align-content: space-around;
-        row-gap: 15px;
+        display: flex;
+        place-items: center;
+        grid-template-columns: auto auto auto auto;
+        grid-template-rows: auto auto auto auto;
+        align-items: center;
+        justify-content: center;
+        column-gap: 5px;
+        margin: auto;
+        row-gap: 5px;
     }
 </style>
