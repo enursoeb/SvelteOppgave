@@ -26,21 +26,17 @@
 </div>
 <img class="image" src="Images/MovieOptions.png" alt="movieoptions" />
 
-<p />
 <h3>Finn filmer</h3>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin convallis, nisi eget
-lobortis posuere,<br />
-libero libero pulvinar sapien, ac fermentum dui nisi nec erat. Vivamus hendrerit
-sodales laoreet. <br />
-Nunc gravida in turpis sit amet faucibus. Aliquam bibendum feugiat tellus, a suscipit
-leo blandit a <br />. Donec eget magna nec eros ornare ultricies vel sit amet
-lorem. <br />
-Maecenas scelerisque ligula ut ligula tempor, vel varius diam elementum. Sed ut velit
-odio. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
-himenaeos. <br /> Nunc accumsan egestas risus nec gravida. Pellentesque
-convallis tellus purus, vel convallis magna iaculis eu. <br />
-Vivamus iaculis sem in quam mattis malesuada. Vestibulum euismod congue mauris. Mauris
-eu eros suscipit, interdum orci quis, egestas erat. Proin non varius elit.
+<div>
+Dette er siden hvor man kan legge til nye filmer i sin samling. <br>
+Plasser markøren i søkefeltet og skriv inn tittel på film du ønsker å finne <br> 
+(det er foreløpig ikke støtte for avansert søk.) <br>Etter at man har søkt ved å klikk på søk-knappen, 
+vil det vises filminfo for alle treff, <br> tilsvarende oversikt-siden.
+Klikk <edit class="edit"> grønn knapp </edit> for å flytte en film til samlingen, 
+eller <br> <delete class="deleteMovie">rød knapp</delete> for å fjerne film fra søkeresultater. <br>
+</div>
+
+<img class="image" src="Images/MovieSearch.png" alt="moviesearch" />
 
 <style>
     .image {
@@ -49,6 +45,8 @@ eu eros suscipit, interdum orci quis, egestas erat. Proin non varius elit.
         border: 5px solid #555;
         margin-top: 12px;
         margin-bottom: 12px;
+        max-width: 420px;
+        max-height: 380px;
     }
 
     .edit {
