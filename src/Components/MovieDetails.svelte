@@ -61,6 +61,10 @@
       addToCollection(movie);
     }
   };
+
+  const closeModal = (e) => {
+    showModal = false;
+  };
 </script>
 
 <div class="movie-results">
@@ -73,9 +77,9 @@
 
     {#if !isSearch}
       {#if showModal}
-        <Modal on:close={() => (showModal = false)}>
+        <Modal>
           <h2 slot="header">Endre hylle</h2>
-          <AddRackForm on:addRack={addRack} />
+          <AddRackForm on:addRack={addRack} on:closeModal={closeModal} />
         </Modal>
       {/if}
       <Button flat={true} type="secondary" on:click={toggleModal}
@@ -97,9 +101,9 @@
     {/if}
     {#if isSearch && disableButton === false}
       {#if showModal}
-        <Modal on:close={() => (showModal = false)}>
+        <Modal>
           <h2 slot="header">Velg hylle</h2>
-          <AddRackForm on:addRack={addRack} />
+          <AddRackForm on:addRack={addRack} on:closeModal={closeModal} />
         </Modal>
       {/if}
       <Button flat={true} type="secondary" on:click={toggleModal}

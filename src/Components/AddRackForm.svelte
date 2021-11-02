@@ -11,7 +11,7 @@
     let newValue = true;
     let existingValues = false;
     let validation = true;
-    
+
     const handleSubmit = () => {
         let inputRack = {
             rackName: rack,
@@ -26,7 +26,12 @@
         validate();
 
         if (validation) dispatch("addRack", inputRack);
+    };
 
+    const dummy = () => {};
+
+    const closeModal = () => {
+        dispatch("closeModal", null);
     };
 
     const toggleInputMethods = () => {
@@ -36,10 +41,12 @@
     };
 
     const validate = () => {
-
         console.log("Rack", rack);
-        console.log("ExistingValues", existingValues)
-        console.log("Validating.....", existingValues || (rack != "navn på ny hylle" && rack != ""));
+        console.log("ExistingValues", existingValues);
+        console.log(
+            "Validating.....",
+            existingValues || (rack != "navn på ny hylle" && rack != "")
+        );
 
         if (existingValues || (rack != "navn på ny hylle" && rack != ""))
             validation = true;
@@ -47,7 +54,7 @@
     };
 </script>
 
-<form on:submit|preventDefault={handleSubmit}>
+<form on:submit|preventDefault={dummy}>
     Opprett ny hylle
     <input
         type="checkbox"
@@ -89,7 +96,7 @@
     <Button flat={true} type="secondary" on:click={handleSubmit}
         >Lagre endringer</Button
     >
-    <Button flat={true} on:click={dispatch("close")}>Avbryt</Button>
+    <Button flat={true} on:click={closeModal}>Avbryt</Button>
 </form>
 
 <style>
