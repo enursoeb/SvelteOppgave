@@ -6,9 +6,7 @@
   import { createEventDispatcher } from "svelte";
   import Modal from "../Shared/Modal.svelte";
   import AddRackForm from "./AddRackForm.svelte";
-  import { get } from "svelte/store";
   import { Confirm } from "svelte-confirm";
-
   export let movie;
   export let isSearch;
   export let disableButton = false;
@@ -73,48 +71,42 @@
     Hylle: {movie.Rack} <br />
     <div><img class="image" src={movie.Poster} alt={movie.Tittel} /></div>
 
-    
-      {#if !isSearch}
-        
-        {#if showModal}
-        <Modal on:close="{() => showModal = false}">
+    {#if !isSearch}
+      {#if showModal}
+        <Modal on:close={() => (showModal = false)}>
           <AddRackForm on:addRack={addRack} />
         </Modal>
-        {/if}
-        <Button flat={true} type="secondary" on:click={toggleModal}
-          >Endre hylle</Button
-        >
-        <Confirm 
+      {/if}
+      <Button flat={true} type="secondary" on:click={toggleModal}
+        >Endre hylle</Button
+      >
+      <Confirm
         confirmTitle="Slett film"
         cancelTitle="Avbryt"
-        let:confirm="{confirmThis}">
-          <Button
-            flat={true}
-            on:click="{() => confirmThis(deleteItem, movie.Id)}"
-          >
-            Slett</Button
-          >
-          <span slot="title">
-            Vil du slette filmen?
-          </span>
-          <span slot="description">
-            Filmen vil ikke være mulig å gjenoprrette!
-          </span>
-        </Confirm>
-      {/if}
-      {#if isSearch && disableButton === false}
-        {#if showModal}
-        <Modal on:close="{() => showModal = false}">
+        let:confirm={confirmThis}
+      >
+        <Button flat={true} on:click={() => confirmThis(deleteItem, movie.Id)}>
+          Slett</Button
+        >
+        <span slot="title"> Vil du slette filmen? </span>
+        <span slot="description">
+          Filmen vil ikke være mulig å gjenoprrette!
+        </span>
+      </Confirm>
+    {/if}
+    {#if isSearch && disableButton === false}
+      {#if showModal}
+        <Modal on:close={() => (showModal = false)}>
           <AddRackForm on:addRack={addRack} />
         </Modal>
-        {/if}
-        <Button flat={true} type="secondary" on:click={toggleModal}
-          >Flytt til samling</Button
-        >
       {/if}
-      {#if isSearch}
-        <Button flat={true} on:click={removeSearch}>Fjern fra søk</Button>
-      {/if}
+      <Button flat={true} type="secondary" on:click={toggleModal}
+        >Flytt til samling</Button
+      >
+    {/if}
+    {#if isSearch}
+      <Button flat={true} on:click={removeSearch}>Fjern fra søk</Button>
+    {/if}
   </Card>
 </div>
 
