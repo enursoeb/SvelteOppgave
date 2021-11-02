@@ -8,6 +8,7 @@
     let search = "";
     let isSearch = true;
     let searchResult = [];
+    let sortMethod = "byname"
 
     // Get search result
     const handleSubmit = async () => {
@@ -20,6 +21,7 @@
                         data.Poster = "Images/NoImage.jpg";
                     }
                     searchResult = [...searchResult, data];
+                    sortResults();
                 }
             });
     };
@@ -31,6 +33,16 @@
         );
     };
 
+    const sortResults = () => {
+        if(sortMethod === 'byname') {
+            searchResult = searchResult.sort((a,b) => (a.Title > b.Title) ? 1: -1);
+        }
+
+        if(sortMethod === 'byyear') {
+            searchResult = searchResult.sort((a,b) => (a.Year > b.Year) ? 1: -1);
+        }
+    }
+
     let movieCollection = get(MovieStore);
 </script>
 
@@ -39,6 +51,17 @@
     <input type="text" placeholder="søk" bind:value={search} />
     <button>Søk</button>
 </form>
+
+<!-- Sort search results -->
+{#if searchResult.length > 0} 
+<div class="dropdown" on:change={sortResults}>
+    <h4>Sorter resultater</h4>
+    <select bind:value={sortMethod}>
+            <option value="byname">Tittel</option>
+            <option value="byyear">Kronologisk</option>
+    </select>
+</div>
+{/if}
 
 <!-- display search results -->
 <div class="movie-list">
